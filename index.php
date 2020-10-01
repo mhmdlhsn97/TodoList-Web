@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="FA/css/all.min.css">
     <link rel="stylesheet" href="CSS/custom.css">
     <script src="FA/js/all.min.js"></script>
+    <script src="JS/custom.js"></script>
 </head>
 <body>
     <?php 
