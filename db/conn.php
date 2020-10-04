@@ -15,7 +15,7 @@ try {
   $conn = new PDO("mysql:host=$servername;dbname=todo-list", $username, $password);
   // set the PDO error mode to exception
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  console_log( "Connected successfully");
+ // console_log( "Connected successfully");
 } catch(PDOException $e) {
   console_log( "Connection failed: " . $e->getMessage());
 }
