@@ -1,13 +1,19 @@
 function gotoSignUp() {
     $('#ThyBody').empty();
-    $('#ThyBody').load("pages/signup.html", "data", function (response, status, request) {
+    $('#ThyBody').load("pages/signup.html", "data", function () {
         this;
     });
 };
 
 function gotoSignIn() {
     $('#ThyBody').empty();
-    $('#ThyBody').load("pages/signin.html", "data", function (response, status, request) {
+    $('#ThyBody').load("pages/signin.html", "data", function () {
+        this;
+    });
+};
+function gotoHome() {
+    $('#ThyBody').empty();
+    $('#ThyBody').load("pages/Home.html", "data", function () {
         this;
     });
 };
@@ -45,7 +51,7 @@ function signUp() {
                         $('#passCnf').empty();
                         $('#passCnf').append("Success, you will be redirected to sign in page.");
                         $('#passCnf').attr('style', 'display:block,');
-                        setTimeout(gotoSignIn,3000);
+                        setTimeout(gotoSignIn, 3000);
                         break;
                     case 0:
                         $('#passCnf').empty();
@@ -75,3 +81,42 @@ function signUp() {
 }
 
 //Sign in fnct
+
+function signIn() {
+    var user = $('#user-name').val();
+    var pass = $('#password').val();
+    var cookie = $('cookie').val();
+    if (user != null && pass != null) {
+        $.ajax({
+            type: "POST",
+            url: "db/signIn.php",
+            data: {
+                user: user,
+                pass: pass
+            },
+            dataType: "text",
+            success: function (response) {
+                var js=JSON.parse(response);
+                var x = js.x;
+                switch (x) {
+                    case 1:
+                        
+                        gotoHome();
+                        break;
+                    case 2:
+                        //the wrong username;
+                        break;
+                    case 3:
+                        //the wrong password;
+                        break;
+                    default:
+                        //unknow error;
+                        break;
+                }
+            },
+            error: function(){
+                console.log("AJAX error");
+            }
+        });
+    }
+}
