@@ -87,3 +87,6 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+#passCnf{
+    margin: 0.1em;
+}
