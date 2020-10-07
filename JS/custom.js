@@ -86,6 +86,9 @@ function signIn() {
     var user = $('#user-name').val();
     var pass = $('#password').val();
     var cookie = $('cookie').val();
+    if(cookie){
+        document.cookie('{"username"="'+user+'"}');
+    }
     if (user != null && pass != null) {
         $.ajax({
             type: "POST",
@@ -105,14 +108,19 @@ function signIn() {
                         var x = parseInt(obj['x']);
                         switch (x) {
                             case 2:
-                                console.log("Wrong user");
+                                $("#alert").empty();
+                                $("#alert").append("The Username you entered is unavailable in the DB.")
+                                $("#alert").css('display','inline');
                                 break;
                             case 3:
-                                console.log("Wrong pass");
+                                $("#alert").empty();
+                                $("#alert").append("Wrong Password.")
+                                $("#alert").css('display','inline');
                                 break;
                             default:
-                                //unknow error;
-                                console.log("Unkown Error");
+                                $("#alert").empty();
+                                $("#alert").append("Unknown Error.")
+                                $("#alert").css('display','inline');
                                 break;
                         }
                     }
