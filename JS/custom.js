@@ -101,15 +101,9 @@ function signIn() {
                 if (b != "") {
                     if (obj.hasOwnProperty('user_id')) {
                         console.log(b);
-                        var x2 = obj.x;
-                        console.log("X: " + x2);
                     } else {
-                        var x = obj.x;
+                        var x = parseInt(obj['x']);
                         switch (x) {
-                            case 1:
-
-                                gotoHome();
-                                break;
                             case 2:
                                 console.log("Wrong user");
                                 break;
