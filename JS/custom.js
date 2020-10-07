@@ -96,25 +96,36 @@ function signIn() {
             },
             dataType: "text",
             success: function (response) {
-                var js=JSON.parse(response);
-                var x = js.x;
-                switch (x) {
-                    case 1:
-                        
-                        gotoHome();
-                        break;
-                    case 2:
-                        //the wrong username;
-                        break;
-                    case 3:
-                        //the wrong password;
-                        break;
-                    default:
-                        //unknow error;
-                        break;
-                }
+                var b = response;
+                var obj = JSON.parse(b);
+                if (b != "") {
+                    if (obj.hasOwnProperty('user_id')) {
+                        console.log(b);
+                        var x2 = obj.x;
+                        console.log("X: " + x2);
+                    } else {
+                        var x = obj.x;
+                        switch (x) {
+                            case 1:
+
+                                gotoHome();
+                                break;
+                            case 2:
+                                console.log("Wrong user");
+                                break;
+                            case 3:
+                                console.log("Wrong pass");
+                                break;
+                            default:
+                                //unknow error;
+                                console.log("Unkown Error");
+                                break;
+                        }
+                    }
+                } else
+                    console.log("No Response From Server");
             },
-            error: function(){
+            error: function () {
                 console.log("AJAX error");
             }
         });
