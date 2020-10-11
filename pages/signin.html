@@ -40,9 +40,12 @@
 	</div>
 </div>
 <script>
-	if(document.cookie){
-		console.log(document.cookie);
-		var u = document.cookie;
-		$('#user-name').attr('placeholder',u);
+	if (document.cookie) {
+		const user = document.cookie
+			.split('; ')
+			.find(row => row.startsWith('username'))
+			.split('=')[1];
+	//	console.log("The Cookie:" + user);
+		$('#user-name').attr('value', user);
 	}
 </script>
