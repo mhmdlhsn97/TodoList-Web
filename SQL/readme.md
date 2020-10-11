@@ -1,0 +1,1 @@
+This is the SQL script to create a DB, it was exported from MySQL.
