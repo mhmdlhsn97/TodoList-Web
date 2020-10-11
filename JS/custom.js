@@ -18,6 +18,17 @@ function gotoHome() {
     });
 };
 
+function logout() {
+    sessionStorage.removeItem("logedin");
+    sessionStorage.removeItem("userid");
+    sessionStorage.removeItem("username");
+    $('#ThyBody').empty();
+    $('#ThyBody').load("pages/signin.html", "data", function () {
+        this;
+    });
+}
+
+
 //Sign Up Ajax cmnd
 function signUp() {
     var username = $('#user-name').val();
@@ -86,8 +97,10 @@ function signIn() {
     var user = $('#user-name').val();
     var pass = $('#password').val();
     var cookie = $('cookie').val();
-    if(cookie){
-        document.cookie('{"username"="'+user+'"}');
+    if (cookie) {
+        document.cookie = 'username='+user;
+    }else{
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
     if (user != null && pass != null) {
         $.ajax({
@@ -103,24 +116,28 @@ function signIn() {
                 var obj = JSON.parse(b);
                 if (b != "") {
                     if (obj.hasOwnProperty('user_id')) {
+                        sessionStorage.setItem("logedin", 1);
+                        sessionStorage.setItem("userid", obj['user_id']);
+                        sessionStorage.setItem("username", obj['user-name']);
                         console.log(b);
+                        gotoHome();
                     } else {
                         var x = parseInt(obj['x']);
                         switch (x) {
                             case 2:
                                 $("#alert").empty();
                                 $("#alert").append("The Username you entered is unavailable in the DB.")
-                                $("#alert").css('display','inline');
+                                $("#alert").css('display', 'inline');
                                 break;
                             case 3:
                                 $("#alert").empty();
                                 $("#alert").append("Wrong Password.")
-                                $("#alert").css('display','inline');
+                                $("#alert").css('display', 'inline');
                                 break;
                             default:
                                 $("#alert").empty();
                                 $("#alert").append("Unknown Error.")
-                                $("#alert").css('display','inline');
+                                $("#alert").css('display', 'inline');
                                 break;
                         }
                     }
@@ -133,3 +150,4 @@ function signIn() {
         });
     }
 }
+

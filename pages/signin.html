@@ -39,3 +39,10 @@
 		</div>
 	</div>
 </div>
+<script>
+	if(document.cookie){
+		console.log(document.cookie);
+		var u = document.cookie;
+		$('#user-name').attr('placeholder',u);
+	}
+</script>
