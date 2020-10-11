@@ -96,7 +96,10 @@ function signUp() {
 function signIn() {
     var user = $('#user-name').val();
     var pass = $('#password').val();
-    var cookie = $('#cooki').val();
+    if ($('#cooki').is(":checked"))
+        var cookie = 1;
+    else
+        var cookie = 0;
     console.log("check value=" + cookie);
     if (user != null && pass != null) {
         $.ajax({
@@ -112,11 +115,10 @@ function signIn() {
                 var obj = JSON.parse(b);
                 if (b != "") {
                     if (obj.hasOwnProperty('user_id')) {
-                        if (cookie) {
+                        if (cookie == 1)
                             document.cookie = "username=" + user;
-                        } else {
-                            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                        }
+                        else
+                            document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
                         sessionStorage.setItem("logedin", 1);
                         sessionStorage.setItem("userid", obj['user_id']);
                         sessionStorage.setItem("username", obj['user-name']);
