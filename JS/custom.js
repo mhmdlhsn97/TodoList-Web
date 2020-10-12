@@ -100,6 +100,10 @@ function signIn() {
         var cookie = 1;
     else
         var cookie = 0;
+    if ($('#sign').is(":checked"))
+        var sign = 1;
+    else
+        var sign = 0;
     console.log("check value=" + cookie);
     if (user != null && pass != null) {
         $.ajax({
@@ -119,6 +123,9 @@ function signIn() {
                             document.cookie = "username=" + user;
                         else
                             document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+                        if (sign == 1) {
+                            document.cookie = "userid=" + obj['user_id'];
+                        }
                         sessionStorage.setItem("logedin", 1);
                         sessionStorage.setItem("userid", obj['user_id']);
                         sessionStorage.setItem("username", obj['user-name']);

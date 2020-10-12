@@ -13,8 +13,33 @@
 </head>
 <body id='ThyBody'>
     <?php 
-    include 'pages/signin.html';
+ //   if(isset($_SESSION['logedin']))
+   // include 'pages/home.html';
+   // else
+  //  include 'pages/signin.html';
     ?>
+
     <script src="JS/custom.js"></script>
+    <script>
+        var user,userid;
+        if (document.cookie) {
+		user = document.cookie
+			.split('; ')
+			.find(row => row.startsWith('username'))
+            .split('=')[1];
+        userid = document.cookie.split('; ')
+        .find(row => row.startsWith('userid')).split('=')[1];    
+	}
+        if(sessionStorage.getItem('username') && sessionStorage.getItem('logedin') )
+        gotoHome();
+        else if(user!=null && userid!=null){
+            sessionStorage.setItem("logedin", 1);
+            sessionStorage.setItem("userid", userid);
+            sessionStorage.setItem("username", user);
+            gotoHome();
+        }
+        else
+        gotoSignIn();
+    </script>
 </body>
 </html>

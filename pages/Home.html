@@ -5,9 +5,14 @@
         })
     </script>
 </nav>
-<div class="container">
-
-
-
-
+<div class="container" id='home'>
+    <h1 id='welc'></h1>
 </div>
+<script>
+    if(sessionStorage.getItem("username")){
+        $('#welc').append("Welcome "+sessionStorage.getItem("username")+" !");
+    }else{
+        gotoSignIn();
+    }
+
+</script>
