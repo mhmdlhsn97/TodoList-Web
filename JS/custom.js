@@ -17,6 +17,13 @@ function gotoHome() {
         this;
     });
 };
+function gotolist() {
+    $('#ThyBody').empty();
+    $('#ThyBody').load("pages/list.html", "data", function () {
+        this;
+    });
+};
+
 
 function logout() {
     sessionStorage.removeItem("logedin");
@@ -158,5 +165,46 @@ function signIn() {
                 console.log("AJAX error");
             }
         });
+    }
+}
+
+function addList() {
+    var name = $("#name").val();
+    if (sessionStorage.getItem("userid"))
+        var userid = sessionStorage.getItem("userid");
+    else var userid = null
+    if (name != null && userid != null) {
+        $.ajax({
+            type: "POST",
+            url: "db/addList.php",
+            data: {
+                userid: userid,
+                listName: name
+            },
+            dataType: "text",
+            success: function (response) {
+                console.log("The SQL RAN");
+                gotolist();
+            }
+        })
+    }
+    else console.log("user id not set");
+}
+function getList(userid) {
+    if (sessionStorage.getItem("userid"))
+        var userid = sessionStorage.getItem("userid");
+    else var userid = null
+    if (userid != null) {
+        $.ajax({
+            type: "POST",
+            url: "db/getList.php",
+            data: {
+                userid: userid
+            },
+            dataType: "text",
+            success: function (response) {
+                
+            }
+        })
     }
 }
