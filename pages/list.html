@@ -20,5 +20,9 @@
     </div>
 </div>
 <script>
-    
+    if (sessionStorage.getItem("userid"))
+        var userid = sessionStorage.getItem("userid");
+    else
+        var userid = null
+    $(document).ready(getList(userid));
 </script>

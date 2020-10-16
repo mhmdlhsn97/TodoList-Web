@@ -7,7 +7,7 @@ if(isset($_POST['userid'])){
         if($stmt->rowCount()>0){
             $res=$stmt->fetch(PDO::FETCH_ASSOC);
             $js_res=json_encode($res);
-            console_log("json encoded thingies: "+$js_res+"\n");
+         //   console_log("json encoded thingies: "+$js_res+"\n");
             echo $js_res;
         }else echo "You Do Not Have Any Lists.";
     }

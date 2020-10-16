@@ -191,9 +191,6 @@ function addList() {
     else console.log("user id not set");
 }
 function getList(userid) {
-    if (sessionStorage.getItem("userid"))
-        var userid = sessionStorage.getItem("userid");
-    else var userid = null
     if (userid != null) {
         $.ajax({
             type: "POST",
@@ -203,7 +200,17 @@ function getList(userid) {
             },
             dataType: "text",
             success: function (response) {
-                
+                var res = response;
+                $('#Lists').append("<table class='table'>" +
+                    +  "< thead >" +
+                    + "<tr>" +
+                    +  "   <th scope='col'>#</th>" +
+                    + "    <th scope='col'>List Name</th>" +
+                    + "   <th scope='col'></th>" +
+                    +" </tr>" +
+                    +"  </thead > <tbody id='tablebod'></tbody></table>");
+                var jsObj=JSON.parse(res);
+                console.log("\\\\\\\\\\\\\\\n"+jsObj+"\\\\\\\\\\\\\\\\\\n")
             }
         })
     }
