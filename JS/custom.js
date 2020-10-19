@@ -200,17 +200,24 @@ function getList(userid) {
             },
             dataType: "text",
             success: function (response) {
+                console.log("Success!!");
                 var res = response;
-                $('#Lists').append("<table class='table'>" +
-                    +  "< thead >" +
-                    + "<tr>" +
-                    +  "   <th scope='col'>#</th>" +
-                    + "    <th scope='col'>List Name</th>" +
-                    + "   <th scope='col'></th>" +
-                    +" </tr>" +
+                var js=JSON.parse(res);
+                $('#Lists').append("<table class='table table-dark'>" 
+                    +  "<thead>" 
+                    + "<tr>" 
+                    +  "   <th scope='col'>#</th>" 
+                    + "    <th scope='col'>List Name</th>" 
+                    + "   <th scope='col'></th>" 
+                    +" </tr>" 
                     +"  </thead > <tbody id='tablebod'></tbody></table>");
-                var jsObj=JSON.parse(res);
-                console.log("\\\\\\\\\\\\\\\n"+jsObj+"\\\\\\\\\\\\\\\\\\n")
+                for(var i=0;i<js.length;i++){
+                    $('#tablebod').append('<tr><th scope="row">'+js[i]['list-id']
+                    +'</th><td>'+js[i]['list-name']
+                    +'</td><td><input class="btn btn-light" onclick=gotoList('+js[i]['list-id']+') type="button" value="Go to List"/></td></tr>');
+                }
+                
+                
             }
         })
     }
