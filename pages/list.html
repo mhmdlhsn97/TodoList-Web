@@ -6,7 +6,7 @@
     </script>
 </nav>
 <div class="container" id='list'>
-    <div class="card">
+    <div class="card" id='addLis'>
         <div class="card-body">
             <h5 class="card-title" style="color: aliceblue;">New List</h5>
             <div class="card-text">
@@ -20,9 +20,13 @@
     </div>
 </div>
 <script>
-    if (sessionStorage.getItem("userid"))
+    if (sessionStorage.getItem("userid")){
         var userid = sessionStorage.getItem("userid");
-    else
-        var userid = null
+        console.log("Got user id\n"+userid+"\\\\\ \n");}
+    else{
+        var userid = null;console.log("didnt get userid");}
     $(document).ready(getList(userid));
+    function gotoList(listid){
+        
+    }
 </script>
