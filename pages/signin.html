@@ -1,54 +1,82 @@
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<div id='alert' class="alert alert-warning" role="alert" style="display: none;"></div>
-			<div class="card-header">
-				<h3>Sign In</h3>
-			</div>
-			<div class="card-body">
-				<form>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-						<input id='user-name' type="text" class="form-control" placeholder="username">
+<div class="container" id='asd124' style="display: none;">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div id='alert2' class="alert alert-warning" role="alert" style="display: none;"></div>
+            <div class="card-header">
+                <h3>Reset Password</h3>
+            </div>
+            <div class="card-body">
+                <div class="input-group form-group">
+                    <input id='pass-name' type="text" class="form-control" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input type='button' onclick="resetPass()" value="Reset" class="btn float-right login_btn">
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-center links">
+                        <a onclick="gotoSignIn()" href="#">Goto Sign In Page.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id='asd123'>
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div id='alert' class="alert alert-warning" role="alert" style="display: none;"></div>
+            <div class="card-header">
+                <h3>Sign In</h3>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        </div>
+                        <input id='user-name' type="text" class="form-control" placeholder="username">
 
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input id='password' type="password" class="form-control" placeholder="password">
-					</div>
-					<div class="row align-items-center remember">
-						<input id='cooki' type="checkbox">Remember Me
-					</div>
-					<div class="row align-items-center remember">
-						<input id='sign' type="checkbox">Stay Signed in
-					</div>
-					<div class="form-group">
-						<input type='button' onclick="signIn()" value="Sign in" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					Don't have an account?<a onclick="gotoSignUp()" href="#">Sign Up</a>
-				</div>
-				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
-				</div>
-			</div>
-		</div>
-	</div>
+                    </div>
+                    <div class="input-group form-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                        </div>
+                        <input id='password' type="password" class="form-control" placeholder="password">
+                    </div>
+                    <div class="row align-items-center remember">
+                        <input id='cooki' type="checkbox">Remember Me
+                    </div>
+                    <div class="row align-items-center remember">
+                        <input id='sign' type="checkbox">Stay Signed in
+                    </div>
+                    <div class="form-group">
+                        <input type='button' onclick="signIn()" value="Sign in" class="btn float-right login_btn">
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    Don't have an account?<a onclick="gotoSignUp()" href="#">Sign Up</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a onclick="gotoPass()" href="#">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
-	if (document.cookie) {
-		const user = document.cookie
-			.split('; ')
-			.find(row => row.startsWith('username'))
-			.split('=')[1];
-	//	console.log("The Cookie:" + user);
-		$('#user-name').attr('value', user);
-	}
+    if (document.cookie) {
+        const user = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('username'))
+            .split('=')[1];
+        //	console.log("The Cookie:" + user);
+        $('#user-name').attr('value', user);
+    }
+
+    function gotoPass() {
+        $('#asd123').css("display", 'none');
+        $('#asd124').css("display", 'block');
+    }
 </script>
