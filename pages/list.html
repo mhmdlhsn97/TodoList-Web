@@ -1,17 +1,29 @@
 <nav id='nav' class="navbar navbar-expand-lg navbar-light bg-light">
     <script>
-        $(function () {
+        $(function() {
             $('#nav').load('pages/navbar.html');
         })
     </script>
 </nav>
 <div class="container" id='list'>
+    <div style="display: none;" class="container" id='addJob'>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" style="color: aliceblue;">New List</h5>
+                <div class="card-text">
+                    <input class="form-control" type="text" name="List Name" id="name"><br>
+                    <input class="btn btn-light" type="button" onclick="addJob()" value="Add List">
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="card" id='addLis'>
         <div class="card-body">
             <h5 class="card-title" style="color: aliceblue;">New List</h5>
             <div class="card-text">
-                <input type="text" name="List Name" id="name"><br>
-                <input type="button" onclick="addList()" value="Add List">
+                <input class="form-control" type="text" name="List Name" id="name"><br>
+                <input class="btn btn-light" type="button" onclick="addList()" value="Add List">
             </div>
         </div>
     </div>
@@ -20,13 +32,16 @@
     </div>
 </div>
 <script>
-    if (sessionStorage.getItem("userid")){
+    if (sessionStorage.getItem("userid")) {
         var userid = sessionStorage.getItem("userid");
-        console.log("Got user id\n"+userid+"\\\\\ \n");}
-    else{
-        var userid = null;console.log("didnt get userid");}
+        console.log("Got user id\n" + userid + "\\\\\ \n");
+    } else {
+        var userid = null;
+        console.log("didnt get userid");
+    }
     $(document).ready(getList(userid));
-    function gotoList(listid){
-        
+
+    function gotoList(listid) {
+
     }
 </script>
